@@ -65,9 +65,9 @@ Untuk setiap  dua huruf(*digram*) di *ciphertext* disubtitusi dengan huruf sesua
 ```
 Contoh
 CIPHERTEXT = DJTCMHGVLGPKRYCQKBLZECECXWLLJCUIPKLLFRJZKYTJCQ
-	- Untuk setiap 2 huruf, cari di tabel key di baris mana ia berada. Lalu substitusikan menjadi huruf yang berkorespondensi.
+	-> Untuk setiap 2 huruf, cari di tabel key di baris mana ia berada. Lalu substitusikan menjadi huruf yang berkorespondensi.
 	('DJ', 'TC', 'MH', 'GV', 'LG', 'PK', 'RY', 'CQ', 'KB', 'LZ', 'EC', 'EC', 'XW', 'LL', 'JC', 'UI', 'PK', 'LL', 'FR', 'JZ', 'KY', 'TJ', 'CQ')
-	- Substitusikan
+	-> Substitusikan
 	('K', 'R', 'I', 'P', 'T', 'O', 'G', 'R', 'A', 'F', 'I', 'I', 'L', 'M', 'U', 'K', 'O', 'M', 'P', 'U', 'T', 'E', 'R')
 
 PLAINTEXT = KRIPTOGRAFIILMUKOMPUTER
@@ -75,19 +75,19 @@ PLAINTEXT = KRIPTOGRAFIILMUKOMPUTER
 
 ##Implementasi dengan bahasa python
 
-Implementasi dibuat berdasarkan algoritma di atas. Tabel key dibuat menggunakan list dengan banyak elemen 26 yang didalamnya berisi array. Array tersebut akan diisi dengan dua huruf secara *random*. Untuk simbol dan huruf yang digunakan diatur pada *string* **huruf**. 
+Implementasi dibuat berdasarkan algoritma di atas. Tabel key dibuat menggunakan list dengan banyak elemen 26 yang didalamnya berisi array. Array tersebut akan diisi dengan dua huruf secara *random*. Untuk simbol dan huruf yang digunakan diatur pada *string* **huruf**.  Hasil dari kode di bawah adalah *list* dengan 26 elemen (index ke-0 artinya huruf "A", index ke-25 huruf "Z") yang berisi *array*. 
 
 ```python
 huruf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-Matrix = []
+key = []
 for i in range(26*4) : 
 	a = random.choice(huruf) + random.choice(huruf)
-	while(Matrix.__contains__(a) == True) : 
+	while(key.__contains__(a) == True) : 
 		a = random.choice(huruf) + random.choice(huruf)
-	Matrix.append(a)
+	key.append(a)
 
-MatrixList = []
-MatrixList = [Matrix[i:i+4] for i in range(0, len(Matrix), 4)]
+keyList = []
+keyList = [key[i:i+4] for i in range(0, len(key), 4)]
 ```
 Tabel key juga bisa dibuat sendiri dengan membuat *list* sebanyak 26 yang masing-masing berisi *array* yang isinya adalah *digram/polygram* tujuan. Kode *python* di bawah mendeskripsikan substitusi huruf A, B, dan C ke beberapa *digram*
 
@@ -99,7 +99,23 @@ Pada saat enkripsi, untuk setiap karakter di *plaintext* akan diubah menjadi *di
 
 ```python
 for a in plaintext : 
-	ciphertext += random.choice(MatrixList[ord(a)-65])
+	ciphertext += random.choice(keyList[ord(a)-65])
+```
+
+Untuk dekripsi hal yang pertama dilakukan adalah membagi string plainteks menjadi *digram* ke dalam suatu *list*. Lalu untuk setiap elemen *digram* di list tersebut akan dicari apakah *digram* tersebut ada pada suatu elemen di keyList , jika ada maka substitusikan sesuai dengan index elemen ditambah 65 (*ascii*).
+
+```python
+dPlaintext = ""
+cipherList = []
+[cipherList.append(ciphertext[i:i+2]) for i in range(0, len(ciphertext), 2)]
+print cipherList
+
+for i in cipherList :
+	for x in range(26):
+		if keyList[x].__contains__(i) == True : 
+			dPlaintext += chr(x+65)
+			
+print dPlaintext
 ```
 
 
