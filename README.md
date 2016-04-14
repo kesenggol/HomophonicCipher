@@ -119,6 +119,6 @@ print dPlaintext
 ```
 
 ######Contoh Run
-![alt tag](https://github.com/kesenggol/HomophonicCipher/blob/master/run.jpg?raw=true)
+![alt tag](https://github.com/kesenggol/HomophonicCipher/raw/master/run.jpg)
 
 
