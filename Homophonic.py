@@ -7,7 +7,7 @@
 import random
 
 ##Random Key##
-huruf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+huruf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 key = []
 for i in range(26*4) : 
 	a = random.choice(huruf) + random.choice(huruf)
