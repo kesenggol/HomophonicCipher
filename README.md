@@ -6,13 +6,13 @@ Kriptografi homofonik adalah bagian dari kriptografi substitusi yang termasuk al
 
 NOTE : Pada implementasi homofonik ini, kami hanya menggunakan **digram** dari huruf kapital
 
-##Latar Belakang
+## Latar Belakang
 
 Substitusi *cipher* alfabet tunggal dan alfabet majemuk mempunyai kelemahan di frekuensi karakter, dimana *plaintext* yang sama memiliki *ciphertext* yang sama pula. Dengan cipher homofonik kejadian tersebut dapat dihindari, *plaintext* yang sama memiliki *ciphertext* yang berbeda.
 
-##Algoritma
+## Algoritma
 
-######Key
+###### Key
 Key digambarkan sebagai tabel yang memetakan setiap huruf dengan **digram**. Setiap digram harus berbeda satu sama lain untuk menghindari kesalahan pada saat dekripsi.
 
 ```
@@ -25,7 +25,7 @@ C | AF CC PQ DE
 Z | MM CF AZ RE
 ```
 
-######Enkripsi
+###### Enkripsi
 Untuk setiap huruf di *plaintext* disubtitusi dengan *digram* yang dipilih secara ***random***.
 ```
 Contoh
@@ -60,7 +60,7 @@ PLAINTEXT = KRIPTOGRAFIILMUKOMPUTER
 CIPHERTEXT = DJTCMHGVLGPKRYCQKBLZECECXWLLJCUIPKLLFRJZKYTJCQ
 ```
 
-######Dekripsi
+###### Dekripsi
 Untuk setiap  dua huruf(*digram*) di *ciphertext* disubtitusi dengan huruf sesuai dengan letak *digram* itu berada di tabel.
 ```
 Contoh
@@ -73,7 +73,7 @@ CIPHERTEXT = DJTCMHGVLGPKRYCQKBLZECECXWLLJCUIPKLLFRJZKYTJCQ
 PLAINTEXT = KRIPTOGRAFIILMUKOMPUTER
 ```
 
-##Implementasi dengan bahasa python
+## Implementasi dengan bahasa python
 
 Implementasi dibuat berdasarkan algoritma di atas. Tabel key dibuat menggunakan list dengan banyak elemen 26 yang didalamnya berisi array. Array tersebut akan diisi dengan dua huruf secara *random*. Untuk simbol dan huruf yang digunakan diatur pada *string* **huruf**.  Hasil dari kode di bawah adalah *list* dengan 26 elemen (index ke-0 artinya huruf "A", index ke-25 huruf "Z") yang berisi *array*. 
 
@@ -118,7 +118,7 @@ for i in cipherList :
 print dPlaintext
 ```
 
-######Contoh Run
+###### Contoh Run
 ![alt tag](https://github.com/kesenggol/HomophonicCipher/raw/master/run.jpg)
 
 
